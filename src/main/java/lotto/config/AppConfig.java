@@ -1,6 +1,7 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
+import lotto.machine.LottoMachine;
 import lotto.parser.Parser;
 import lotto.repeater.InputRepeater;
 import lotto.service.LottoService;
@@ -26,10 +27,14 @@ public class AppConfig {
     }
 
     private LottoService createLottoService() {
-        return new LottoService(createParser());
+        return new LottoService(createParser(), createLottoMachine());
     }
 
     private Parser createParser() {
         return new Parser();
+    }
+
+    private LottoMachine createLottoMachine() {
+        return new LottoMachine();
     }
 }

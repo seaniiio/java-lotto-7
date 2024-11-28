@@ -6,6 +6,7 @@ import lotto.constant.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class AmountTest {
@@ -24,5 +25,13 @@ class AmountTest {
         Assertions.assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Amount(amount))
                 .withMessageContaining(ErrorMessage.AMOUNT_UNIT_ERROR.getMessage());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1000, 1", "5000, 5"})
+    void 로또_발행_수_계산_테스트(int amount, int expected) {
+        Amount purchasedAmount = new Amount(amount);
+        Assertions.assertThat(purchasedAmount.getCount())
+                .isEqualTo(expected);
     }
 }

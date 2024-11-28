@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.dto.LottoDto;
 import lotto.repeater.InputRepeater;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -20,11 +22,10 @@ public class LottoController {
     }
 
     public void run() {
-        processInput();
-    }
-
-    private void processInput() {
         inputRepeater.continueUntilNormalInput(this::processAmountInput, outputView::printMessage);
+        List<LottoDto> purchasedLotto = lottoService.issue();
+//        outputView.printPurchasedLotto();
+
     }
 
     private void processAmountInput() {

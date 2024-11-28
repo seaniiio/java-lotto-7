@@ -12,6 +12,10 @@ public class Amount {
         validate(amount);
     }
 
+    public int getCount() {
+        return amount / UNIT;
+    }
+
     private void validate(int amount) {
         validatePositive(amount);
         validateUnit(amount);
