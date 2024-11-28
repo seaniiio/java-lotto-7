@@ -24,7 +24,7 @@ public class LottoController {
     public void run() {
         inputRepeater.continueUntilNormalInput(this::processAmountInput, outputView::printMessage);
         List<LottoDto> purchasedLotto = lottoService.issue();
-//        outputView.printPurchasedLotto();
+        outputView.printPurchasedLotto(purchasedLotto);
 
     }
 
