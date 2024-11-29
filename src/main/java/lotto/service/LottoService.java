@@ -15,6 +15,7 @@ public class LottoService {
     private final LottoMachine lottoMachine;
     private Amount purchasedAmount;
     private PurchasedLotto purchasedLotto;
+    private Lotto winningLotto;
 
     public LottoService(final Parser parser, final LottoMachine lottoMachine) {
         this.parser = parser;
@@ -31,9 +32,14 @@ public class LottoService {
         for (int i = 0; i < purchasedAmount.getCount(); i++) {
             issuedLotto.add(new Lotto(lottoMachine.issueLotto()));
         }
-        
+
         purchasedLotto = new PurchasedLotto(issuedLotto);
         return toLottoDto(purchasedLotto);
+    }
+
+    public void setWinningNumbers(String winningNumbersInput) {
+        List<Integer> winningNumbers = parser.parseLottoNumber(winningNumbersInput);
+        this.winningLotto = new Lotto(winningNumbers);
     }
 
     private List<LottoDto> toLottoDto(PurchasedLotto purchasedLotto) {

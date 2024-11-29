@@ -26,10 +26,17 @@ public class LottoController {
         List<LottoDto> purchasedLotto = lottoService.issue();
         outputView.printPurchasedLotto(purchasedLotto);
 
+        inputRepeater.continueUntilNormalInput(this::processWinningNumbersInput, outputView::printMessage);
+
     }
 
     private void processAmountInput() {
         String amountInput = inputView.inputAmount();
         lottoService.setAmount(amountInput);
+    }
+
+    private void processWinningNumbersInput() {
+        String winningNumbersInput = inputView.inputWinningNumbers();
+        lottoService.setWinningNumbers(winningNumbersInput);
     }
 }
