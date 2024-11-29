@@ -1,7 +1,5 @@
 package lotto.parser;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import org.assertj.core.api.Assertions;
@@ -36,5 +34,13 @@ class ParserTest {
         Assertions.assertThatIllegalArgumentException()
                 .isThrownBy(() -> parser.parseLottoNumber(winningNumbersInput))
                 .withMessageContaining(ErrorMessage.LOTTO_FORMAT_ERROR.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1번", "", " ", "\n"})
+    void 보너스_번호_형식_예외_테스트(String bonusNumberInput) {
+        Assertions.assertThatIllegalArgumentException()
+                .isThrownBy(() -> parser.parseBonusNumber(bonusNumberInput))
+                .withMessageContaining(ErrorMessage.BONUS_NUMBER_FORMAT_ERROR.getMessage());
     }
 }

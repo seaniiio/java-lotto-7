@@ -28,6 +28,7 @@ public class LottoController {
 
         inputRepeater.continueUntilNormalInput(this::processWinningNumbersInput, outputView::printMessage);
 
+        inputRepeater.continueUntilNormalInput(this::processBonusNumberInput, outputView::printMessage);
     }
 
     private void processAmountInput() {
@@ -38,5 +39,10 @@ public class LottoController {
     private void processWinningNumbersInput() {
         String winningNumbersInput = inputView.inputWinningNumbers();
         lottoService.setWinningNumbers(winningNumbersInput);
+    }
+
+    private void processBonusNumberInput() {
+        String bonusNumberInput = inputView.inputBonusNumber();
+        lottoService.setBonusNumber(bonusNumberInput);
     }
 }

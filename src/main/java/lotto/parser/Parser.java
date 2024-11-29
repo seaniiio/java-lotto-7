@@ -25,4 +25,13 @@ public class Parser {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_FORMAT_ERROR.getMessage());
         }
     }
+
+    public int parseBonusNumber(String bonusNumberInput) {
+        try {
+            int parsedBonusNumber = Integer.parseInt(bonusNumberInput);
+            return parsedBonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_FORMAT_ERROR.getMessage());
+        }
+    }
 }

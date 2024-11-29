@@ -14,7 +14,5 @@ public class OutputView {
 
         purchasedLotto.stream()
                 .forEach(System.out::println);
-
-        System.out.println();
     }
 }
