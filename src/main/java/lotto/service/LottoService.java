@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.constant.LottoRank;
 import lotto.domain.Amount;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.PurchasedLotto;
 import lotto.domain.WinningLotto;
 import lotto.dto.LottoDto;
@@ -20,6 +21,7 @@ public class LottoService {
     private PurchasedLotto purchasedLotto;
     private Lotto winningLottoNumbers;
     private WinningLotto winningLotto;
+    private LottoResult lottoResult;
 
     public LottoService(final Parser parser, final LottoMachine lottoMachine) {
         this.parser = parser;
@@ -53,15 +55,19 @@ public class LottoService {
 
     public RankDto checkLotto() {
         List<Lotto> lottoBundle = this.purchasedLotto.getPurchasedLotto();
-        RankDto results = new RankDto();
+        lottoResult = new LottoResult();
 
         for (Lotto lotto : lottoBundle) {
             int matchCount = winningLotto.checkLottoMatchCount(lotto);
             boolean matchBonusNumber = winningLotto.checkBonusNumberMatch(lotto);
-            results.addResult(LottoRank.checkLottoRank(matchCount, matchBonusNumber));
+            lottoResult.addResult(LottoRank.checkLottoRank(matchCount, matchBonusNumber));
         }
 
-        return results;
+        return new RankDto(lottoResult.getResults());
+    }
+
+    public double calculateProfit() {
+        return lottoResult.getTotalPrize() / purchasedAmount.getAmount();
     }
 
     private List<LottoDto> toLottoDto(PurchasedLotto purchasedLotto) {

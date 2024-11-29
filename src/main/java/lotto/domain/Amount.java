@@ -16,6 +16,10 @@ public class Amount {
         return amount / UNIT;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validate(int amount) {
         validatePositive(amount);
         validateUnit(amount);

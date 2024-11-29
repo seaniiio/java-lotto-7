@@ -33,6 +33,9 @@ public class LottoController {
 
         RankDto results = lottoService.checkLotto();
         outputView.printLottoRanks(results);
+
+        double profit = lottoService.calculateProfit();
+        outputView.printProfit(profit);
     }
 
     private void processAmountInput() {

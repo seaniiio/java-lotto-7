@@ -28,4 +28,8 @@ public class OutputView {
             }
         }
     }
+
+    public void printProfit(double profit) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", profit * 100);
+    }
 }
