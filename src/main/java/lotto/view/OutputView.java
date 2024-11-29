@@ -1,7 +1,10 @@
 package lotto.view;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import lotto.constant.LottoRank;
 import lotto.dto.LottoDto;
+import lotto.dto.RankDto;
 
 public class OutputView {
 
@@ -14,5 +17,15 @@ public class OutputView {
 
         purchasedLotto.stream()
                 .forEach(System.out::println);
+    }
+
+    public void printLottoRanks(RankDto results) {
+        System.out.println(System.lineSeparator() + "당첨 통계" + System.lineSeparator() + "---");
+        LinkedHashMap<LottoRank, Integer> ranks = results.getResults();
+        for (LottoRank lottoRank : ranks.keySet()) {
+            if (!lottoRank.equals(LottoRank.NONE)) {
+                System.out.println(lottoRank.getMessage() + " - " + ranks.get(lottoRank) + "개");
+            }
+        }
     }
 }

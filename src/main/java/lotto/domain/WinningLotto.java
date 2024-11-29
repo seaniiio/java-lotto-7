@@ -16,6 +16,17 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public int checkLottoMatchCount(Lotto lotto) {
+        return lotto.getNumbers().stream()
+                .filter(number -> winningLotto.getNumbers().contains(number))
+                .toList()
+                .size();
+    }
+
+    public boolean checkBonusNumberMatch(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
     private void validate(Lotto winningLotto, int bonusNumber) {
         validateDuplicated(winningLotto, bonusNumber);
         validateBonusNumberBound(bonusNumber);

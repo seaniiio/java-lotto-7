@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.dto.LottoDto;
+import lotto.dto.RankDto;
 import lotto.repeater.InputRepeater;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -29,6 +30,9 @@ public class LottoController {
         inputRepeater.continueUntilNormalInput(this::processWinningNumbersInput, outputView::printMessage);
 
         inputRepeater.continueUntilNormalInput(this::processBonusNumberInput, outputView::printMessage);
+
+        RankDto results = lottoService.checkLotto();
+        outputView.printLottoRanks(results);
     }
 
     private void processAmountInput() {
